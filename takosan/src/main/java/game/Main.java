@@ -35,9 +35,11 @@ public class Main implements Skill{
                     break;
                 case 1:
                     System.out.println("1,heal");
+					//ここに回復するコード（Math.なんとか使用）
+					System.out.println(p.name + " healed" + dmg + "HP");
                     break;
                 default:
-                    throw new IllegalArgumentException("ｵｲｵｲｵｲ");
+                    throw new IllegalArgumentException("Not found that Skill");
             }
         }
     }
