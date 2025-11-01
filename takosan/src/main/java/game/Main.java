@@ -16,7 +16,9 @@ public class Main implements Skill{
         n = scanner.nextInt();
         m.use(n,player,enemy);
         scanner.close();
-    }
+		for(int i=0; i<20; i++){
+			
+	    }
     @Override
     public void use(int n,Character p,Character t){
         
@@ -37,7 +39,6 @@ public class Main implements Skill{
                     System.out.println("1,heal");
 					//ここに回復するコード（Math.なんとか使用）
 					dmg = 30;
-					p.hp=Math.clamp(p.hp,0,p.maxHp);
 					System.out.println(p.name + " healed" + dmg + "HP");
                     break;
                 default:
