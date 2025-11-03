@@ -10,6 +10,8 @@ public class Character{
     int atk;
     int dfe;
     Weapon w=new Weapon();
+    //Armor a=new Armor();
+    
 
     public Character(String name,int hp,int sp,int stag,int atk,int dfe){
         this.name=name;
@@ -22,7 +24,33 @@ public class Character{
         this.sp = this.maxSp;
         this.stag = this.maxStag;
     }
-    
+    public void damaged(int d,int s){
+        
+        if(this.stag <= s){
+            calcDamage(d, s);
+            this.stag = 0;
+            System.out.println(this.name + "は体制を崩した");
+        }else{
+            calcDamage(d, s);
+            this.stag -= s;
+        }
+    }
+    public void calcDamage(int dmg,int s){
+        int d = ((this.stag == 0) ? dmg*2 : dmg-this.dfe);//スタッグが0のときダメージ2倍、そうでないとき防御力分ダメージ軽減
+        if(this.hp< d){//ダメージがマイナスにならないようにする
+            System.out.println(d + "damage!!");
+            this.hp=0;
+            System.out.println(this.name + "は倒れた");
+        }else{
+            this.hp -= d;
+            System.out.println(this.name + " take " + d + " damage!!");
+        }
+        if(this.stag == 0){
+            this.stag = this.maxStag;
+            System.out.println("Debag log: stag reset!!!!!!!!!!!!!!!!!!!!!!");
+        }
+        
+    }
     
     public void showAll(){
         System.out.println(this.name);
@@ -37,13 +65,23 @@ public class Character{
         System.out.println("");
     }
     public void show(){
-        System.out.println(this.name);
+        System.out.println(this.name + ":");
         System.out.printf("HP:" + this.hp + "/" + this.maxHp);
-        for(int i=0; i<this.maxHp/5; i++){
+        for(int i=0; i<this.hp/5; i++){
             System.out.printf("■");
+        }for(int i=0; i<(this.maxHp/5)-(this.hp/5); i++){
+            System.out.printf("□");
         }System.out.println("");
-        System.out.println("SP:" + this.sp + "/" + this.maxSp);
+
+        System.out.printf("SP:" + this.sp + "/" + this.maxSp);
+        for(int i=0; i<this.sp; i++){
+            System.out.printf("●");
+        }for(int i=0; i<(this.maxSp-this.sp); i++){
+            System.out.printf("○");
+        }System.out.println("");
+
         System.out.println("Stagger:" + this.stag + "/" + this.maxStag);
+        System.out.println("");
     }
     
 }
