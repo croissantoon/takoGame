@@ -1,7 +1,6 @@
 package game;
 import java.util.*;
-import java.util.Scanner;
-public class Main implements Skill{
+public class Main{
     public static void main(String[] args) {
         Main m=new Main();
         Scanner scanner = new Scanner(System.in);
@@ -12,12 +11,27 @@ public class Main implements Skill{
         
         Character player = new Character("YOU",100,10,60,10,5);//"名前",HP,SP,STAGGER,ATK,DFE
         Character enemy = new Character("ENEMY",80,5,50,10,5);
+
+        List<Skill> deck = new ArrayList<Skill>();
+        deck.add(new Charge());
+        deck.add(new Charge());
+        deck.add(new Slash());
+        deck.add(new Stab());
+        Collections.shuffle(deck);
+
+        List<Skill> hand = new ArrayList<>();
+        for (int i = 0; i < 3; i++) hand.add(deck.remove(0));
+
         player.show();
         System.out.println(enemy.name + "が現れた！");
-		for(int i=0; i<20; i++){
-            System.out.println("Select your move: 0:charge 1:slash 2:heal 3:stab");
+		for(int i=0; i<20; i++){//戦闘ループ
+            System.out.println("Select your move:");
+            for(int j=0; j<hand.size(); j++){
+                System.out.println(j + ": " + hand.get(j).getClass().getSimpleName());
+            }
             n = scanner.nextInt();
-			m.use(n,player,enemy);
+			Skill chosen = deck.get(n);
+            chosen.use(player, enemy);
             if(enemy.sp > 0){
                 m.use(1,enemy,player);
             }else{
@@ -33,7 +47,6 @@ public class Main implements Skill{
 	    }
         scanner.close();
     }
-    @Override
     public void use(int n,Character p,Character t){
         if(p.stag > 0){
             int dmg,stg,cost;

@@ -9,6 +9,7 @@ public class Character{
     int stag,maxStag;
     int atk;
     int dfe;
+    //List<Skill> deck = new ArrayList<Skill>();
     Weapon w=new Weapon();
     //Armor a=new Armor();
     

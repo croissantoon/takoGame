@@ -4,7 +4,7 @@ public class Slash implements Skill{
     public static final int COST = 1;
 
     @Override
-    public void use(int n, Character p, Character t){
+    public void use( Character p, Character t){
         int dmg = 10;
         int stg = 10;
         int cost = COST;
@@ -13,7 +13,7 @@ public class Slash implements Skill{
             return;
         }
         p.sp -= cost;
-        System.out.println(p.name + " slash to " + t.name);
+        System.out.println(p.name + " slash to " + t.name + " by class");
         t.damaged(dmg, stg);
     }
 }
