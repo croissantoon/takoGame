@@ -4,24 +4,33 @@ public class Main{
     public static void main(String[] args) {
         Main m=new Main();
         Scanner scanner = new Scanner(System.in);
-        int weapon;
-        int armor;
+        Weapon weapon = new SteelSword();
+        Gun gun = new HandGun();
+        //Armor armor;
         int items[];
         int n=0;
         
-        Character player = new Character("YOU",100,10,60,10,5);//"名前",HP,SP,STAGGER,ATK,DFE
-        Character enemy = new Character("ENEMY",80,5,50,10,5);
+        Character player = new Character("YOU",100,10,60,10,5,gun);//"名前",HP,SP,STAGGER,ATK,DFE
+        Character enemy = new Character("ENEMY",80,5,50,10,5,gun);
+
+        player.wepon = weapon;
+        player.gun = gun;
+        //player.ammo = gun.ammo;
+        enemy .wepon = new SteelSword();
+        enemy .gun = new HandGun();
 
         List<Skill> deck = new ArrayList<Skill>();
         deck.add(new Charge());
         deck.add(new Charge());
         deck.add(new Slash());
+        deck.add(new Slash());
         deck.add(new Stab());
+        deck.add(new Gunshot());
         Collections.shuffle(deck);
 
         List<Skill> hand = new ArrayList<>();
-        for (int i = 0; i < 3; i++) hand.add(deck.remove(0));
-
+        for (int i = 0; i < 4 ; i++) hand.add(deck.remove(0));
+        
         player.show();
         System.out.println(enemy.name + "が現れた！");
 		for(int i=0; i<20; i++){//戦闘ループ
@@ -30,7 +39,7 @@ public class Main{
                 System.out.println(j + ": " + hand.get(j).getClass().getSimpleName());
             }
             n = scanner.nextInt();
-			Skill chosen = deck.get(n);
+			Skill chosen  = hand.get(n);//これ用のクラスを作る
             chosen.use(player, enemy);
             if(enemy.sp > 0){
                 m.use(1,enemy,player);
@@ -40,7 +49,9 @@ public class Main{
             
             
             player.show();
+            System.out.println("Ammo:" + player.ammo + "/" + player.maxAmmo);
             enemy.show();
+            System.out.println();
             if(enemy.stag == enemy.maxStag){
                 System.out.println(enemy.name + " ready to move ...");
             }
