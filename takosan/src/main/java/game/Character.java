@@ -10,11 +10,15 @@ public class Character{
     int atk;
     int dfe;
     //List<Skill> deck = new ArrayList<Skill>();
-    Weapon w=new Weapon();
-    //Armor a=new Armor();
-    
+    Weapon wepon;
+    Gun gun;
+    //Armor armor;
+    int maxAmmo=gun.ammo;
+    int ammo=gun.ammo;
 
-    public Character(String name,int hp,int sp,int stag,int atk,int dfe){
+    int TAtk=this.atk + this.wepon.atk;
+
+    public Character(String name,int hp,int sp,int stag,int atk,int dfe,Gun gun){
         this.name=name;
         this.maxHp=hp;
         this.maxSp=sp;
@@ -24,6 +28,7 @@ public class Character{
         this.hp = this.maxHp;
         this.sp = this.maxSp;
         this.stag = this.maxStag;
+        this.gun=gun;
     }
     public void damaged(int d,int s){
         
@@ -63,7 +68,7 @@ public class Character{
         System.out.println("Stagger:" + this.stag + "/" + this.maxStag);
         System.out.println("ATK:" + this.atk);
         System.out.println("DFE:" + this.dfe);
-        System.out.println("");
+        //System.out.println("");
     }
     public void show(){
         System.out.println(this.name + ":");
