@@ -5,12 +5,12 @@ public class Charge implements Skill{
 
     @Override
     public void use( Character p, Character t){
-        if(p.sp >= p.maxSp){
+        if(p.sp <= p.maxSp - 3){
             System.out.println(p.name + " cant charge more");
             return;
         }
-        p.sp += 1;
-        System.out.println(p.name + " charged +1 SP");
+        p.sp += 3;
+        System.out.println(p.name + " charged +3 SP");
     }
 
 }
