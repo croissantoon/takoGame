@@ -1,34 +1,36 @@
 package game;
 
-import java.lang.reflect.Method;
+//import java.lang.reflect.Method;
 
-public class Character{
+public abstract class Character{
     String name;
     int hp,maxHp;
     int sp,maxSp;
     int stag,maxStag;
     int atk;
     int dfe;
-    //List<Skill> deck = new ArrayList<Skill>();
-    Weapon wepon;
+    
+    Weapon weapon;
     Gun gun;
     //Armor armor;
-    int maxAmmo=gun.ammo;
-    int ammo=gun.ammo;
+    int maxAmmo;
+    int ammo;
 
-    int TAtk=this.atk + this.wepon.atk;
+    int TAtk;
 
-    public Character(String name,int hp,int sp,int stag,int atk,int dfe,Gun gun){
+    public Character(String name,int hp,int sp,int stag,int atk,int dfe,Weapon weapon,Gun gun){
         this.name=name;
         this.maxHp=hp;
         this.maxSp=sp;
         this.maxStag=stag;
         this.atk=atk;
         this.dfe=dfe;
+        this.weapon=weapon;
+        this.gun=gun;
         this.hp = this.maxHp;
         this.sp = this.maxSp;
         this.stag = this.maxStag;
-        this.gun=gun;
+        this.TAtk = this.atk + this.weapon.atk;
     }
     public void damaged(int d,int s){
         
@@ -86,8 +88,13 @@ public class Character{
             System.out.printf("○");
         }System.out.println("");
 
-        System.out.println("Stagger:" + this.stag + "/" + this.maxStag);
-        System.out.println("");
+        System.out.printf("Stagger:" + this.stag + "/" + this.maxStag);
+        for(int i=0; i<((this.maxStag - this.stag)/5); i++){
+            System.out.printf("*");
+        }for(int i=0; i<this.stag/5; i++){
+            System.out.printf("-");
+        }System.out.println("");
+        System.out.println("----------------------------");
     }
     
 }
