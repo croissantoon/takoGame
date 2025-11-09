@@ -1,5 +1,10 @@
 package game;
 import java.util.*;
+//import game.weapons.*;
+//import game.guns.*;
+//import game.skills.*;
+import java.*;
+
 public class Main{
     public static void main(String[] args) {
         Main m=new Main();
@@ -36,7 +41,7 @@ public class Main{
 
         player.show();
         System.out.println(enemy.name + "が現れた！");
-		for(int i=0; i<25; i++){//戦闘ループ
+		for(int i=0; i<25; i++){//戦闘ループ（whileにする）
             System.out.println("Your deck:");
             for(int j=0; j<deck.size(); j++){
                 System.out.println(j + ": " + deck.get(j).getClass().getSimpleName());
@@ -52,13 +57,17 @@ public class Main{
             hand.add(deck.remove(0));//デッキから補充 3 5
             hand.remove(i);//手札から消す 3 4
             
-            if(enemy.sp >= enemy.maxSp - 3){//敵のターン
+            m.wait(500);
+
+            if(enemy.sp >= 3){//敵のターン
                 chosen = eDeck.get(new Random().nextInt(eDeck.size()-1));
             }else{
                 chosen = eDeck.get(0);
             }
             chosen.use(enemy,player);
             
+            m.wait(500);
+
             player.show();
             System.out.println("Ammo:" + player.ammo + "/" + player.maxAmmo);
             enemy.show();
@@ -68,6 +77,13 @@ public class Main{
             }
 	    }
         scanner.close();
+    }
+    public void wait(int ms){
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            e.printStackTrace(); 
+        }
     }
     
 }

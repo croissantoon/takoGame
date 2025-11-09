@@ -6,8 +6,8 @@ public class Reload implements Skill{
     @Override
     public void use(Character p, Character t){
         int cost = COST;
-        if(p.sp < cost){
-            System.out.println(p.name + " cant reload because SP is low");
+        if(p.ammo >= p.maxAmmo){
+            System.out.println(p.name + " cant reload more");
             return;
         }
         p.ammo = p.maxAmmo;
