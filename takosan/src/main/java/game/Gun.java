@@ -7,6 +7,7 @@ public abstract class Gun {
     String name;
     int ammo;
     int atk;
+    int stg;
 
     List<Skill> skills = new ArrayList<Skill>();
 }

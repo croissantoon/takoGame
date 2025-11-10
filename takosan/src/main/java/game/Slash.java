@@ -8,7 +8,7 @@ public class Slash implements Skill{
         int dmg = (int) Math.round(10 + (p.TAtk * 0.8));
         int stg = 10;
         if(p.sp < COST){
-            System.out.println(p.name + " cant slash because SP is low");
+            System.out.println(red + p.name + " cant slash because " + yellow + "SP" + end + " is low" + end);
             return;
         }
         p.sp -= COST;

@@ -3,14 +3,14 @@ import java.util.*;
 //import game.weapons.*;
 //import game.guns.*;
 //import game.skills.*;
-import java.*;
+//import java.*;
 
 public class Main{
     public static void main(String[] args) {
         Main m=new Main();
         Scanner scanner = new Scanner(System.in);
         Weapon weapon = new SteelSword();
-        Gun gun = new HandGun();
+        Gun gun = new ShotGun();
         //Armor armor;
         int items[];
         int n=0;
@@ -59,7 +59,7 @@ public class Main{
             
             m.wait(500);
 
-            if(enemy.sp >= 3){//敵のターン
+            if(enemy.sp >= 2){//敵のターン
                 chosen = eDeck.get(new Random().nextInt(eDeck.size()-1));
             }else{
                 chosen = eDeck.get(0);
@@ -69,8 +69,9 @@ public class Main{
             m.wait(500);
 
             player.show();
-            System.out.println("Ammo:" + player.ammo + "/" + player.maxAmmo);
+            m.wait(500);
             enemy.show();
+            m.wait(500);
             System.out.println();
             if(enemy.stag == enemy.maxStag){
                 System.out.println(enemy.name + " ready to move ...");

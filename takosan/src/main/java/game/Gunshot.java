@@ -6,9 +6,9 @@ public class Gunshot implements Skill{
     @Override
     public void use(Character p, Character t){
         int dmg = 10;
-        int stg = 40;
+        int stg = 30 + p.weaponStg;
         if(p.ammo <= 0){
-            System.out.println(p.name + " cant gunshot because SP is low");
+            System.out.println(red + p.name + " cant gunshot because " + yellow + "Ammo" + " is low" + end);
             return;
         }
         p.ammo -= 1;

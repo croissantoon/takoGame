@@ -3,12 +3,21 @@ package game;
 //import java.lang.reflect.Method;
 
 public abstract class Character{
+    String red    = "\u001b[00;31m";
+    String green  = "\u001b[00;32m";
+    String yellow = "\u001b[00;33m";
+    String purple = "\u001b[00;34m";
+    String pink   = "\u001b[00;35m";
+    String cyan   = "\u001b[00;36m";   
+    String end    = "\u001b[00m";
+    
     String name;
     int hp,maxHp;
     int sp,maxSp;
     int stag,maxStag;
     int atk;
     int dfe;
+    int weaponStg;
     
     Weapon weapon;
     Gun gun;
@@ -16,7 +25,10 @@ public abstract class Character{
     int maxAmmo;
     int ammo;
 
-    int TAtk;
+    int TAtk;//総合ダメージ
+    int TDef;//総合防御力
+    
+    int chargeCount=0;
 
     public Character(String name,int hp,int sp,int stag,int atk,int dfe,Weapon weapon,Gun gun){
         this.name=name;
@@ -31,6 +43,7 @@ public abstract class Character{
         this.sp = this.maxSp;
         this.stag = this.maxStag;
         this.TAtk = this.atk + this.weapon.atk;
+        this.weaponStg = this.weapon.stg;
     }
     public void damaged(int d,int s){
         
@@ -94,6 +107,7 @@ public abstract class Character{
         }for(int i=0; i<this.stag/5; i++){
             System.out.printf("-");
         }System.out.println("");
+        System.out.println("Ammo:" + this.ammo + "/" + this.maxAmmo);
         System.out.println("----------------------------");
     }
     
