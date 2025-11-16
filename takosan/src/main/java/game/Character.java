@@ -29,21 +29,19 @@ public abstract class Character{
     int TDef;//総合防御力
     
     int chargeCount=0;
+    int bufs[] = new int[10];//バフデバフ管理用配列
+    //0:
 
-    public Character(String name,int hp,int sp,int stag,int atk,int dfe,Weapon weapon,Gun gun){
+    public Character(String name,int hp,int sp,int stag,int atk,int dfe){
         this.name=name;
         this.maxHp=hp;
         this.maxSp=sp;
         this.maxStag=stag;
         this.atk=atk;
         this.dfe=dfe;
-        this.weapon=weapon;
-        this.gun=gun;
         this.hp = this.maxHp;
         this.sp = this.maxSp;
-        this.stag = this.maxStag;
-        this.TAtk = this.atk + this.weapon.atk;
-        this.weaponStg = this.weapon.stg;
+        this.stag = this.maxStag;//staggerではなくarmorにする？
     }
     public void damaged(int d,int s){
         

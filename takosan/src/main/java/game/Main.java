@@ -12,11 +12,12 @@ public class Main{
         Weapon weapon = new SteelSword();
         Gun gun = new ShotGun();
         //Armor armor;
-        int items[];
+        //int items[];
         int n=0;
-        
+        Enemy enemylist[] = {new Enemy("Slime",50,3,30,5,1),new Enemy("Goblin",70,4,40,6,2),new Enemy("Orc",90,5,50,7,3)};
+
         Player player = new Player("YOU",100,10,60,10,5,weapon,gun);//"名前",HP,SP,STAGGER,ATK,DFE
-        Character enemy = new Enemy("Enemy",80,5,50,8,3,new NoWeapon(),new NoGun());//"名前",HP,SP,STAGGER,ATK,DFE
+        Character enemy = new Enemy("Enemy",80,5,50,8,3);//"名前",HP,SP,STAGGER,ATK,DFE
 
         //player.ammo = gun.ammo;
 
@@ -58,7 +59,11 @@ public class Main{
             hand.remove(i);//手札から消す 3 4
             
             m.wait(500);
-
+            
+            if(enemy.hp <= 0){
+                System.out.println(enemy.name + " defeated!");
+                break;
+            }
             if(enemy.sp >= 2){//敵のターン
                 chosen = eDeck.get(new Random().nextInt(eDeck.size()-1));
             }else{
